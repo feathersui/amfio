@@ -35,11 +35,13 @@ class AMFEcmaArrayTest extends Test {
 		Assert.equals(1, array[3]);
 		Assert.equals(5, array[4]);
 
+		#if (haxe_ver > 4.1)
 		Assert.isTrue(array.contains(3));
 		Assert.isTrue(array.contains(1));
 		Assert.isTrue(array.contains(4));
 		Assert.isTrue(array.contains(5));
 		Assert.isFalse(array.contains(8));
+		#end
 		Assert.equals(0, array.indexOf(3));
 		Assert.equals(1, array.indexOf(1));
 		Assert.equals(2, array.indexOf(4));
@@ -61,9 +63,11 @@ class AMFEcmaArrayTest extends Test {
 		Assert.equals(1, array["one"]);
 		Assert.equals(2, array["two"]);
 		Assert.equals(3, array["three"]);
+		#if (haxe_ver > 4.1)
 		Assert.isFalse(array.contains(1));
 		Assert.isFalse(array.contains(2));
 		Assert.isFalse(array.contains(3));
+		#end
 		Assert.equals(-1, array.indexOf(1));
 		Assert.equals(-1, array.indexOf(2));
 		Assert.equals(-1, array.indexOf(3));

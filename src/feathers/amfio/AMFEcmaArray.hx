@@ -123,9 +123,11 @@ class AMFEcmaArrayData<T> {
 		return this.indices.remove(x);
 	}
 
+	#if (haxe_ver > 4.1)
 	public inline function contains(x:T):Bool {
 		return this.indices.contains(x);
 	}
+	#end
 
 	public inline function indexOf(x:T, ?fromIndex:Int):Int {
 		return this.indices.indexOf(x, fromIndex);
