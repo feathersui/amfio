@@ -19,7 +19,6 @@
 
 package feathers.amfio;
 
-import openfl.utils.Dictionary;
 import openfl.errors.Error;
 import openfl.net.ObjectEncoding;
 import openfl.utils.ByteArray;

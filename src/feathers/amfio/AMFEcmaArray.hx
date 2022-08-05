@@ -9,8 +9,6 @@
 package feathers.amfio;
 
 import haxe.DynamicAccess;
-import haxe.iterators.ArrayKeyValueIterator;
-import haxe.iterators.DynamicAccessKeyValueIterator;
 
 @:transitive
 @:forward

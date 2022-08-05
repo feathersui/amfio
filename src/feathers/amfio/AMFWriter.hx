@@ -19,15 +19,14 @@
 
 package feathers.amfio;
 
+import haxe.Constraints.IMap;
 import haxe.ds.WeakMap;
-import openfl.utils.Dictionary;
-import openfl.Vector;
 import openfl.errors.Error;
 import openfl.net.ObjectEncoding;
 import openfl.utils.ByteArray;
+import openfl.utils.Dictionary;
 import openfl.utils.Endian;
 import openfl.utils.IExternalizable;
-import haxe.Constraints.IMap;
 #if (openfl >= "9.2.0")
 import openfl.net.IDynamicPropertyOutput;
 import openfl.net.IDynamicPropertyWriter;
