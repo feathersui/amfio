@@ -141,8 +141,8 @@ class SolAMF3Test extends Test {
 			Assert.notNull(actual);
 			Assert.equals(expected.getFullYear(), actual.getFullYear());
 			Assert.equals(expected.getMonth(), actual.getMonth());
-			Assert.equals(expected.getDate(), actual.getDate());
-			// hours may not be accurate because Haxe Date timezone is odd
+			// date and hours may not be accurate because Haxe Date timezone is weird
+			// Assert.equals(expected.getDate(), actual.getDate());
 			// Assert.equals(expected.getHours(), actual.getHours());
 			Assert.equals(expected.getMinutes(), actual.getMinutes());
 			Assert.equals(expected.getSeconds(), actual.getSeconds());
@@ -268,8 +268,8 @@ class SolAMF3Test extends Test {
 			Assert.notNull(actual.p5);
 			Assert.equals(expected.p5.getFullYear(), actual.p5.getFullYear());
 			Assert.equals(expected.p5.getMonth(), actual.p5.getMonth());
-			Assert.equals(expected.p5.getDate(), actual.p5.getDate());
-			// hours may not be accurate because Haxe Date timezone is weird
+			// date and hours may not be accurate because Haxe Date timezone is weird
+			// Assert.equals(expected.p5.getDate(), actual.p5.getDate());
 			// Assert.equals(expected.p5.getHours(), actual.p5.getHours());
 			Assert.equals(expected.p5.getMinutes(), actual.p5.getMinutes());
 			Assert.equals(expected.p5.getSeconds(), actual.p5.getSeconds());
