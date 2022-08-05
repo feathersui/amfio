@@ -27,7 +27,7 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install utest --quiet
-          haxelib dev feathersui-amfio${{ github.workspace }}
+          haxelib dev feathersui-amfio ${{ github.workspace }}
       - name: Set up Node.js dependencies
         working-directory: test
         run: |
