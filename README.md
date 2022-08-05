@@ -4,7 +4,7 @@ AMF binary data format readers and writers for for [Haxe](https://haxe.org/), [O
 
 ## Minimum Requirements
 
-- Haxe 4.1
+- Haxe 4.2
 - OpenFL 9.2.0
 - Feathers UI 1.0
 
