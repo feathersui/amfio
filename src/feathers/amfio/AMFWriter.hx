@@ -803,9 +803,15 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 			if ((v is AMFEcmaArray.AMFEcmaArrayData)) {
 				var array = cast(v, AMFEcmaArray.AMFEcmaArrayData<Dynamic>);
 				len = array.length;
+				#if (haxe_ver >= 4.1)
 				for (key => value in array.keyValueIterator()) {
 					keys.push(key);
 				}
+				#else
+				for (i in 0...len) {
+					keys.push(i);
+				}
+				#end
 			} else if ((v is Array)) {
 				var array = cast(v, Array<Dynamic>);
 				len = array.length;
