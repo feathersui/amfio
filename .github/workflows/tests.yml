@@ -1,0 +1,98 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test-html5:
+    strategy:
+      matrix:
+        haxe-version: [4.0.5]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: ${{ matrix.haxe-version }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Set up Haxelib dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install utest --quiet
+          haxelib dev feathersui-amfio${{ github.workspace }}
+      - name: Set up Node.js dependencies
+        working-directory: test
+        run: |
+          npm ci
+      - name: Run Tests
+        working-directory: test
+        run: |
+          haxelib run openfl build html5 -final -Dplaywright
+          node playwright-runner.js
+  test-hashlink:
+    strategy:
+      matrix:
+        haxe-version: [4.0.5]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: ${{ matrix.haxe-version }}
+      - name: Set up Haxelib dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install utest --quiet
+          haxelib dev feathersui-amfio ${{ github.workspace }}
+      - name: Run Tests
+        working-directory: test
+        run: haxelib run openfl test hl
+  test-neko:
+    strategy:
+      matrix:
+        haxe-version: [4.0.5]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: ${{ matrix.haxe-version }}
+      - name: Set up Haxelib dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install utest --quiet
+          haxelib dev feathersui-amfio ${{ github.workspace }}
+      - name: Run Tests
+        working-directory: test
+        run: haxelib run openfl test neko
+  test-air:
+    strategy:
+      matrix:
+        haxe-version: [4.0.5]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: joshtynjala/setup-adobe-air-action@v1
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: ${{ matrix.haxe-version }}
+      - name: Set up Haxelib dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install utest --quiet
+          haxelib dev feathersui-amfio ${{ github.workspace }} 
+          haxelib run lime config AIR_SDK ${{ env.AIR_HOME }}
+      - name: Run Tests
+        working-directory: test
+        run: haxelib run openfl test air

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="amfio" package="feathers.amfio" version="1.0.0" company="Bowler Hat LLC" />
+	<app main="openfl.display.Sprite" path="bin" file="feathersui-amfio" />
+	
+	<source path="src" />
+	
+	<haxelib name="openfl" />
+
+	<haxeflag name="--macro" value="include('feathers.amfio')"/>
+
+	<template path="templates" if="flash"/>
+
+	<section if="flash">
+		<source path="build_macros/flash"/>
+		<haxeflag name="--macro" value="AddFlashPropertyMeta.find('feathers.amfio')"/>
+	</section>
+
+	<section if="find_missing_docs">
+		<source path="build_macros/docs"/>
+		<haxeflag name="--macro" value="FindMissingDocs.find('feathers.amfio')"/>
+	</section>
+</project>

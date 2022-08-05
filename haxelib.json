@@ -1,0 +1,14 @@
+{
+  "name": "feathersui-amfio",
+  "url": "https://feathersui.com/",
+  "license": "Apache",
+  "tags": ["openfl", "amf", "amf3", "amf0"],
+  "description": "AMF0 and AMF3 utilities for OpenFL and Feathers UI",
+  "version": "1.0.0-alpha.1",
+  "classPath": "src",
+  "dependencies": {
+    "openfl": ""
+  },
+  "contributors": ["bowlerhat"],
+  "releasenote": "Initial release"
+}
