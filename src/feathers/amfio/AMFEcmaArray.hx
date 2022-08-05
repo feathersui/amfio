@@ -147,9 +147,11 @@ class AMFEcmaArrayData<T> {
 		return this.indices.iterator();
 	}
 
+	#if (haxe_ver > 4.1)
 	public inline function keyValueIterator():AMFEcmaArrayKeyValueIterator {
 		return new AMFEcmaArrayKeyValueIterator(this.indices.keyValueIterator(), this.fields.keyValueIterator());
 	}
+	#end
 
 	public inline function map<S>(f:T->S):Array<S> {
 		return this.indices.map(f);
@@ -164,6 +166,7 @@ class AMFEcmaArrayData<T> {
 	}
 }
 
+#if (haxe_ver > 4.1)
 class AMFEcmaArrayKeyValueIterator {
 	private var indiciesIterator:KeyValueIterator<Dynamic, Dynamic>;
 	private var fieldsIterator:KeyValueIterator<Dynamic, Dynamic>;
@@ -184,3 +187,4 @@ class AMFEcmaArrayKeyValueIterator {
 		return fieldsIterator.next();
 	}
 }
+#end
