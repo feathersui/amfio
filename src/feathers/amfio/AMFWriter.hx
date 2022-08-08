@@ -105,6 +105,9 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		return null;
 	}
 
+	/**
+		Creates a new `AMFReader` instance with the given arguments.
+	**/
 	public function new(targetReference:ByteArray) {
 		target = targetReference;
 		reset();
@@ -112,6 +115,9 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 
 	private var switchedToAMF3:Bool = false;
 
+	/**
+		@see [`ByteArray endian`](https://api.openfl.org/openfl/utils/ByteArray.html#endian)
+	**/
 	@:flash.property
 	public var endian(get, set):Endian;
 
@@ -124,6 +130,9 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		return target.endian;
 	}
 
+	/**
+		@see [`ByteArray objectEncoding`](https://api.openfl.org/openfl/utils/ByteArray.html#objectEncoding)
+	**/
 	public var objectEncoding:ObjectEncoding = AMF3;
 
 	private var target:ByteArray;
@@ -146,6 +155,10 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		return _numberBytes;
 	}
 
+	/**
+		Resets the reader to forget any saved objects, strings, traits, or
+		switching status between AMF0 and AMF3.
+	**/
 	public function reset():Void {
 		objects = [];
 		traits = [];
@@ -153,14 +166,23 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		switchedToAMF3 = false;
 	}
 
+	/**
+		@see [`ByteArray writeByte()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeByte)
+	**/
 	public function writeByte(byte:Int):Void {
 		target.writeByte(byte);
 	}
 
+	/**
+		@see [`ByteArray writeShort()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeShort)
+	**/
 	public function writeShort(short:Int):Void {
 		target.writeShort(short);
 	}
 
+	/**
+		Writes a special 29-bit integer type that is supported by AMF.
+	**/
 	public function writeUInt29(v:UInt):Void {
 		if (v < 128) {
 			writeByte(v);
@@ -181,30 +203,51 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		}
 	}
 
+	/**
+		@see [`ByteArray writeBoolean()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeBoolean)
+	**/
 	public function writeBoolean(value:Bool):Void {
 		writeByte(value ? 1 : 0);
 	}
 
+	/**
+		@see [`ByteArray writeUnsignedInt()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeUnsignedInt)
+	**/
 	public function writeUnsignedInt(val:UInt):Void {
 		writeInt(val);
 	}
 
+	/**
+		@see [`ByteArray writeInt()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeInt)
+	**/
 	public function writeInt(val:Int):Void {
 		target.writeInt(val);
 	}
 
+	/**
+		@see [`ByteArray writeBytes()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeBytes)
+	**/
 	public function writeBytes(bytes:ByteArray, offset:UInt = 0, length:UInt = 0):Void {
 		target.writeBytes(bytes, offset, length);
 	}
 
+	/**
+		@see [`ByteArray writeUTF()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeUTF)
+	**/
 	public function writeUTF(str:String):Void {
 		target.writeUTF(str);
 	}
 
+	/**
+		@see [`ByteArray writeUTFBytes()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeUTFBytes)
+	**/
 	public function writeUTFBytes(str:String):Void {
 		target.writeUTFBytes(str);
 	}
 
+	/**
+		@see [`ByteArray writeFloat()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeFloat)
+	**/
 	public function writeFloat(val:Float):Void {
 		// always big endian
 		var bytes = getNumberBytes();
@@ -213,6 +256,9 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		writeBytes(bytes);
 	}
 
+	/**
+		@see [`ByteArray writeDouble()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeDouble)
+	**/
 	public function writeDouble(val:Float):Void {
 		// always big endian
 		var bytes = getNumberBytes();
@@ -460,10 +506,16 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		return localTraits;
 	}
 
+	/**
+		@see [`ByteArray writeMultiByte()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeMultiByte)
+	**/
 	public function writeMultiByte(value:String, charSet:String):Void {
 		throw new Error("writeMultiByte not supported");
 	}
 
+	/**
+		@see [`ByteArray writeObject()`](https://api.openfl.org/openfl/utils/ByteArray.html#writeObject)
+	**/
 	public function writeObject(v:Dynamic):Void {
 		if (!this._writingExternal) {
 			reset();

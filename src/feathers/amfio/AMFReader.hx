@@ -93,6 +93,9 @@ class AMFReader #if !flash implements IDataInput #end {
 		return null;
 	}
 
+	/**
+		Creates a new `AMFReader` instance with the given arguments.
+	**/
 	public function new(targetReference:ByteArray) {
 		target = targetReference;
 		reset();
@@ -106,6 +109,9 @@ class AMFReader #if !flash implements IDataInput #end {
 
 	private var target:ByteArray;
 
+	/**
+		@see [`ByteArray endian`](https://api.openfl.org/openfl/utils/ByteArray.html#endian)
+	**/
 	@:flash.property
 	public var endian(get, set):Endian;
 
@@ -118,8 +124,14 @@ class AMFReader #if !flash implements IDataInput #end {
 		return target.endian;
 	}
 
+	/**
+		@see [`ByteArray objectEncoding`](https://api.openfl.org/openfl/utils/ByteArray.html#objectEncoding)
+	**/
 	public var objectEncoding:ObjectEncoding = AMF3;
 
+	/**
+		@see [`ByteArray bytesAvailable`](https://api.openfl.org/openfl/utils/ByteArray.html#bytesAvailable)
+	**/
 	@:flash.property
 	public var bytesAvailable(get, never):Int;
 
@@ -127,6 +139,10 @@ class AMFReader #if !flash implements IDataInput #end {
 		return target.bytesAvailable;
 	}
 
+	/**
+		Resets the reader to forget any saved objects, strings, traits, or
+		switching status between AMF0 and AMF3.
+	**/
 	public function reset():Void {
 		objects = [];
 		traits = [];
@@ -134,42 +150,72 @@ class AMFReader #if !flash implements IDataInput #end {
 		switchedToAMF3 = false;
 	}
 
+	/**
+		@see [`ByteArray readByte()`](https://api.openfl.org/openfl/utils/ByteArray.html#readByte)
+	**/
 	public function readByte():Int {
 		return target.readByte();
 	}
 
+	/**
+		@see [`ByteArray readUnsignedByte()`](https://api.openfl.org/openfl/utils/ByteArray.html#readUnsignedByte)
+	**/
 	public function readUnsignedByte():UInt {
 		return target.readUnsignedByte();
 	}
 
+	/**
+		@see [`ByteArray readBoolean()`](https://api.openfl.org/openfl/utils/ByteArray.html#readBoolean)
+	**/
 	public function readBoolean():Bool {
 		return target.readBoolean();
 	}
 
+	/**
+		@see [`ByteArray readShort()`](https://api.openfl.org/openfl/utils/ByteArray.html#readShort)
+	**/
 	public function readShort():Int {
 		return target.readShort();
 	}
 
+	/**
+		@see [`ByteArray readUnsignedShort()`](https://api.openfl.org/openfl/utils/ByteArray.html#readUnsignedShort)
+	**/
 	public function readUnsignedShort():UInt {
 		return target.readUnsignedShort();
 	}
 
+	/**
+		@see [`ByteArray readInt()`](https://api.openfl.org/openfl/utils/ByteArray.html#readInt)
+	**/
 	public function readInt():Int {
 		return target.readInt();
 	}
 
+	/**
+		@see [`ByteArray readUnsignedInt()`](https://api.openfl.org/openfl/utils/ByteArray.html#readUnsignedInt)
+	**/
 	public function readUnsignedInt():Int {
 		return target.readUnsignedInt();
 	}
 
+	/**
+		@see [`ByteArray readFloat()`](https://api.openfl.org/openfl/utils/ByteArray.html#readFloat)
+	**/
 	public function readFloat():Float {
 		return target.readFloat();
 	}
 
+	/**
+		@see [`ByteArray readDouble()`](https://api.openfl.org/openfl/utils/ByteArray.html#readDouble)
+	**/
 	public function readDouble():Float {
 		return target.readDouble();
 	}
 
+	/**
+		Reads a special 29-bit integer type that is supported by AMF.
+	**/
 	public function readUInt29():Int {
 		final read = readUnsignedByte;
 		var b:UInt = read() & 255;
@@ -189,6 +235,9 @@ class AMFReader #if !flash implements IDataInput #end {
 		return (value | b);
 	}
 
+	/**
+		@see [`ByteArray readObject()`](https://api.openfl.org/openfl/utils/ByteArray.html#readObject)
+	**/
 	public function readObject():Dynamic {
 		target.objectEncoding = objectEncoding;
 		if (objectEncoding == AMF0) {
@@ -198,18 +247,30 @@ class AMFReader #if !flash implements IDataInput #end {
 		}
 	}
 
+	/**
+		@see [`ByteArray readUTF()`](https://api.openfl.org/openfl/utils/ByteArray.html#readUTF)
+	**/
 	public function readUTF():String {
 		return target.readUTF();
 	}
 
+	/**
+		@see [`ByteArray readUTFBytes()`](https://api.openfl.org/openfl/utils/ByteArray.html#readUTFBytes)
+	**/
 	public function readUTFBytes(length:UInt):String {
 		return target.readUTFBytes(length);
 	}
 
+	/**
+		@see [`ByteArray readMultiByte()`](https://api.openfl.org/openfl/utils/ByteArray.html#readMultiByte)
+	**/
 	public function readMultiByte(length:UInt, charSet:String):String {
 		throw new Error("readMultiByte not supported");
 	}
 
+	/**
+		@see [`ByteArray readBytes()`](https://api.openfl.org/openfl/utils/ByteArray.html#readBytes)
+	**/
 	public function readBytes(bytes:ByteArray, offset:UInt = 0, length:UInt = 0):Void {
 		target.readBytes(bytes, offset, length);
 	}
