@@ -1,8 +1,8 @@
 # AMF I/O
 
-AMF binary data format readers and writers for for [Haxe](https://haxe.org/), [OpenFL](https://openfl.org/), and [Feathers UI](https://feathersui.com/).
+AMF binary data format readers and writers for for [OpenFL](https://openfl.org/) and [Feathers UI](https://feathersui.com/), written in [Haxe](https://haxe.org/).
 
-Supports raw AMF data, and Local Shared Object _.sol_ files.
+Supports reading and writing raw AMF data, and Local Shared Object _.sol_ files, using OpenFL's `ByteArray` class.
 
 ## Minimum Requirements
 
