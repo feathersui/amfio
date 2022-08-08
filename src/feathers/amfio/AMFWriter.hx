@@ -705,8 +705,13 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		@param value property value
 	**/
 	public function writeDynamicProperty(name:String, value:Dynamic):Void {
-		this.writeAMF3StringWithoutType(name);
-		this.writeAmf3Object(value);
+		if (objectEncoding == AMF3) {
+			this.writeAMF3StringWithoutType(name);
+			this.writeAmf3Object(value);
+		} else {
+			this.writeUTF(name);
+			this.writeAmf0Object(value);
+		}
 	}
 
 	private function writeAMF3TypedObject(v:Dynamic, localTraits:AMFTraits):Void {
