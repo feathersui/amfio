@@ -22,13 +22,13 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install dox --quiet
-          haxelib dev feathersui-amfio $GITHUB_WORKSPACE
+          haxelib dev amfio $GITHUB_WORKSPACE
       - name: Build API reference
         working-directory: docs
         run: haxe docs.hxml
       - uses: actions/upload-artifact@v2
         with:
-          name: feathersui-amfio-docs
+          name: amfio-docs
           path: bin/api/
           if-no-files-found: error
       - name: Deploy to unstable

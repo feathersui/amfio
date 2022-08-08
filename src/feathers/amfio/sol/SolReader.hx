@@ -1,5 +1,5 @@
 /*
-	Feathers UI AMF I/O
+	AMF I/O
 	Copyright 2022 Bowler Hat LLC
 
 	Minerva

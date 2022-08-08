@@ -2,7 +2,7 @@
 <project>
 	
 	<meta title="amfio" package="feathers.amfio" version="1.0.0" company="Bowler Hat LLC" />
-	<app main="openfl.display.Sprite" path="bin" file="feathersui-amfio" />
+	<app main="openfl.display.Sprite" path="bin" file="amfio" />
 	
 	<source path="src" />
 	

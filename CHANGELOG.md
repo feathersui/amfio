@@ -1,4 +1,4 @@
-# feathersui-amfio Change Log
+# amfio Change Log
 
 ## 1.0.0-alpha.1 (????-??-??)
 

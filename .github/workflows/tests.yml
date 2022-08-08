@@ -27,7 +27,7 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install utest --quiet
-          haxelib dev feathersui-amfio ${{ github.workspace }}
+          haxelib dev amfio ${{ github.workspace }}
       - name: Set up Node.js dependencies
         working-directory: test
         run: |
@@ -52,7 +52,7 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install utest --quiet
-          haxelib dev feathersui-amfio ${{ github.workspace }}
+          haxelib dev amfio ${{ github.workspace }}
       - name: Run Tests
         working-directory: test
         run: haxelib run openfl test hl
@@ -71,7 +71,7 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install utest --quiet
-          haxelib dev feathersui-amfio ${{ github.workspace }}
+          haxelib dev amfio ${{ github.workspace }}
       - name: Run Tests
         working-directory: test
         run: haxelib run openfl test neko
@@ -91,7 +91,7 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install utest --quiet
-          haxelib dev feathersui-amfio ${{ github.workspace }} 
+          haxelib dev amfio ${{ github.workspace }} 
           haxelib run lime config AIR_SDK ${{ env.AIR_HOME }}
       - name: Run Tests
         working-directory: test

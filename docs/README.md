@@ -1,4 +1,4 @@
-# Feathers UI AMF I/O API documentation
+# AMF I/O API documentation
 
 The API documentation is created with [dox](https://github.com/HaxeFoundation/dox).
 
