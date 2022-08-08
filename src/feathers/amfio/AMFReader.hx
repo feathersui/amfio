@@ -19,6 +19,7 @@
 
 package feathers.amfio;
 
+import openfl.errors.ArgumentError;
 import openfl.errors.Error;
 import openfl.net.ObjectEncoding;
 import openfl.utils.ByteArray;
@@ -242,8 +243,10 @@ class AMFReader #if !flash implements IDataInput #end {
 		target.objectEncoding = objectEncoding;
 		if (objectEncoding == AMF0) {
 			return readAmf0Object();
-		} else {
+		} else if (objectEncoding == AMF3) {
 			return readAmf3Object();
+		} else {
+			throw new ArgumentError("Unsupported objectEncoding: " + objectEncoding);
 		}
 	}
 

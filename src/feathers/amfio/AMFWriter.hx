@@ -21,10 +21,10 @@ package feathers.amfio;
 
 import haxe.Constraints.IMap;
 import haxe.ds.WeakMap;
+import openfl.errors.ArgumentError;
 import openfl.errors.Error;
 import openfl.net.ObjectEncoding;
 import openfl.utils.ByteArray;
-import openfl.utils.Dictionary;
 import openfl.utils.Endian;
 import openfl.utils.IExternalizable;
 #if (openfl >= "9.2.0")
@@ -523,8 +523,10 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		target.objectEncoding = objectEncoding;
 		if (objectEncoding == AMF0) {
 			writeAmf0Object(v);
-		} else {
+		} else if (objectEncoding == AMF3) {
 			writeAmf3Object(v);
+		} else {
+			throw new ArgumentError("Unsupported objectEncoding: " + objectEncoding);
 		}
 		if (!this._writingExternal) {
 			reset();
@@ -708,9 +710,11 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		if (objectEncoding == AMF3) {
 			this.writeAMF3StringWithoutType(name);
 			this.writeAmf3Object(value);
-		} else {
+		} else if (objectEncoding == AMF0) {
 			this.writeUTF(name);
 			this.writeAmf0Object(value);
+		} else {
+			throw new ArgumentError("Unsupported objectEncoding: " + objectEncoding);
 		}
 	}
 
