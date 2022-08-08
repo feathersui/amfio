@@ -105,11 +105,13 @@ class SolReader {
 			var varName = "";
 			var varValue:Dynamic = null;
 			if (data.objectEncoding == AMF3) {
-				varName = reader.readAmf3String();
-				varValue = reader.readAmf3Object();
+				varName = @:privateAccess reader.readAmf3String();
+				// this can probably be replaced with readObject()
+				varValue = @:privateAccess reader.readAmf3Object();
 			} else if (data.objectEncoding == AMF0) {
 				varName = data.readUTF();
-				varValue = reader.readAmf0Object();
+				// this can probably be replaced with readObject()
+				varValue = @:privateAccess reader.readAmf0Object();
 			}
 			var endingByte = data.readUnsignedByte();
 			if (endingByte != 0) {

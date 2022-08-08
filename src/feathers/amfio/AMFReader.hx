@@ -275,7 +275,7 @@ class AMFReader #if !flash implements IDataInput #end {
 		target.readBytes(bytes, offset, length);
 	}
 
-	public function readAmf0Object():Dynamic {
+	private function readAmf0Object():Dynamic {
 		if (switchedToAMF3) {
 			return readAmf3Object();
 		} else {
@@ -289,12 +289,12 @@ class AMFReader #if !flash implements IDataInput #end {
 		}
 	}
 
-	public function readAmf3Object():Dynamic {
+	private function readAmf3Object():Dynamic {
 		var amfType:UInt = readUnsignedByte();
 		return readAmf3ObjectValue(amfType);
 	}
 
-	public function readAmf3XML():Dynamic {
+	private function readAmf3XML():Dynamic {
 		var ref:UInt = readUInt29();
 		if ((ref & 1) == 0)
 			return getObject(ref >> 1);
@@ -313,7 +313,7 @@ class AMFReader #if !flash implements IDataInput #end {
 		}
 	}
 
-	public function readAmf3String():String {
+	private function readAmf3String():String {
 		var ref:UInt = readUInt29();
 		if ((ref & 1) == 0) {
 			return getString(ref >> 1);
@@ -531,7 +531,7 @@ class AMFReader #if !flash implements IDataInput #end {
 		return localTraits;
 	}
 
-	public function readAmf3Array():Dynamic {
+	private function readAmf3Array():Dynamic {
 		var ref:UInt = readUInt29();
 		if ((ref & 1) == 0)
 			return getObject(ref >> 1);
@@ -569,7 +569,7 @@ class AMFReader #if !flash implements IDataInput #end {
 		return ecmaArray;
 	}
 
-	public function readAmf3Date():Date {
+	private function readAmf3Date():Date {
 		var ref:UInt = readUInt29();
 		if ((ref & 1) == 0)
 			return getObject(ref >> 1);
@@ -579,7 +579,7 @@ class AMFReader #if !flash implements IDataInput #end {
 		return date;
 	}
 
-	public function readByteArray():ByteArray {
+	private function readAmf3ByteArray():ByteArray {
 		var ref:UInt = readUInt29();
 		if ((ref & 1) == 0)
 			return getObject(ref >> 1);
@@ -685,7 +685,7 @@ class AMFReader #if !flash implements IDataInput #end {
 			case AMF3_DATE:
 				value = readAmf3Date();
 			case AMF3_BYTEARRAY:
-				value = readByteArray();
+				value = readAmf3ByteArray();
 			case AMF3_XML:
 				value = readAmf3XML();
 			case AMF3_XMLDOCUMENT:

@@ -88,7 +88,8 @@ class SolWriter {
 				writer.writeDynamicProperty(varName, varValue);
 			} else if (objectEncoding == AMF0) {
 				result.writeUTF(varName);
-				writer.writeAmf0Object(varValue);
+				// this can probably be replaced with writeObject()
+				@:privateAccess writer.writeAmf0Object(varValue);
 			}
 			result.writeByte(0);
 		}

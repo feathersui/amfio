@@ -302,7 +302,7 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		return found;
 	}
 
-	public function amf3ObjectByReference(v:Dynamic):Bool {
+	private function amf3ObjectByReference(v:Dynamic):Bool {
 		final ref:Int = objects.indexOf(v);
 		final found:Bool = ref != -1;
 		if (found) {
@@ -531,7 +531,7 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		}
 	}
 
-	public function writeAmf0Object(v:Dynamic):Void {
+	private function writeAmf0Object(v:Dynamic):Void {
 		if (v == null) {
 			#if html5
 			if (v == js.Lib.undefined) {
@@ -591,7 +591,7 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		}
 	}
 
-	public function writeAmf3Object(v:Dynamic):Void {
+	private function writeAmf3Object(v:Dynamic):Void {
 		if (v == null) {
 			#if html5
 			if (v == js.Lib.undefined) {
@@ -1128,7 +1128,7 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		}
 	}
 
-	public function amf0ObjectByReference(v:Dynamic):Bool {
+	private function amf0ObjectByReference(v:Dynamic):Bool {
 		final ref = objects.indexOf(v);
 		final found:Bool = ref != -1;
 		if (found) {
