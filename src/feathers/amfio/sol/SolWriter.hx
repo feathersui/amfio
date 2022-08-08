@@ -84,13 +84,7 @@ class SolWriter {
 		writer.objectEncoding = objectEncoding;
 		for (varName in Reflect.fields(output)) {
 			var varValue = Reflect.field(output, varName);
-			if (objectEncoding == AMF3) {
-				writer.writeDynamicProperty(varName, varValue);
-			} else if (objectEncoding == AMF0) {
-				result.writeUTF(varName);
-				// this can probably be replaced with writeObject()
-				@:privateAccess writer.writeAmf0Object(varValue);
-			}
+			writer.writeDynamicProperty(varName, varValue);
 			result.writeByte(0);
 		}
 		return result;
