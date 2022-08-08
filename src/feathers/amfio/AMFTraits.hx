@@ -21,6 +21,10 @@ package feathers.amfio;
 
 import haxe.Constraints.Function;
 
+/**
+	Internal class used by `AMFReader` and `AMFWriter`.
+**/
+@:dox(hide)
 class AMFTraits {
 	public static function createInstanceVariableGetterSetter(reflectionFunction:Function, type:String):Dynamic {
 		var ret:Dynamic = {

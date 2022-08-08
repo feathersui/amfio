@@ -38,6 +38,15 @@ import flash.net.IDynamicPropertyWriter;
 import openfl.utils.IDataOutput;
 #end
 
+/**
+	Write raw AMF data from a `ByteArray`.
+
+	```haxe
+	var myData = {myString: "hello", myFloat: 123.4};
+	var writer = new AMFWriter(byteArray);
+	writer.writeObject(data);
+	```
+**/
 class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9.2.0") implements IDynamicPropertyOutput #end {
 	private static final AMF0_AMF3:UInt = 0x11;
 	private static final AMF0_NUMBER:UInt = 0x0;

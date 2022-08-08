@@ -10,6 +10,10 @@ package feathers.amfio;
 
 import haxe.DynamicAccess;
 
+/**
+	Stores data from the AMF associative array type. Unlike Haxe arrays, AS3
+	and ECMAScript aarrays can hold both integer and string keys.
+**/
 @:transitive
 @:forward
 abstract AMFEcmaArray<T>(AMFEcmaArrayData<T>) from AMFEcmaArrayData<T> to AMFEcmaArrayData<T> {

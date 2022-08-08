@@ -10,6 +10,10 @@ package feathers.amfio;
 
 import openfl.utils.Dictionary;
 
+/**
+	Stores data from the AMF dictionary type, which is similar to a map. Unlike
+	Haxe maps, AMF dictionaries can hold a mix of data types.
+**/
 @:transitive
 @:forward
 abstract AMFDictionary<K, V>(AMFDictionaryData<K, V>) from AMFDictionaryData<K, V> to AMFDictionaryData<K, V> {

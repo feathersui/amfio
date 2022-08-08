@@ -24,15 +24,36 @@ package feathers.amfio.sol;
 import openfl.errors.Error;
 import openfl.utils.ByteArray;
 
+/**
+	Read _.sol_ file data from a `ByteArray`.
+
+	```haxe
+	var reader = new SolReader();
+	var data = reader.read(byteArray);
+	```
+**/
 class SolReader {
 	private static final SOL_SIGNATURE = "TCSO";
 	private static final TAG_TYPE_LSO:UInt = 2;
 
+	/**
+		Constructor.
+	**/
 	public function new() {}
 
+	/**
+		The name read from the _.sol_ file.
+	**/
 	public var name(default, null):String;
+
+	/**
+		The data read from the _.sol_ file.
+	**/
 	public var data(default, null):Dynamic;
 
+	/**
+		Reads the _.sol_ data encoded in a `ByteArray`.
+	**/
 	public function read(input:ByteArray):Dynamic {
 		input.position = 0;
 

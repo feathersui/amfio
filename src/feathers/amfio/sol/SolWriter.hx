@@ -24,12 +24,27 @@ package feathers.amfio.sol;
 import openfl.net.ObjectEncoding;
 import openfl.utils.ByteArray;
 
+/**
+	Write _.sol_ file data from a `ByteArray`.
+
+	```haxe
+	var myData = {myString: "hello", myFloat: 123.4};
+	var writer = new SolWriter();
+	var byteArray = reader.read("title", myData);
+	```
+**/
 class SolWriter {
 	private static final SOL_SIGNATURE = "TCSO";
 	private static final TAG_TYPE_LSO:UInt = 2;
 
+	/**
+		Constructor.
+	**/
 	public function new() {}
 
+	/**
+		Writes the _.sol_ data to a `ByteArray`.
+	**/
 	public function write(name:String, output:Dynamic, objectEncoding:ObjectEncoding = AMF3):ByteArray {
 		var result = new ByteArray();
 		result.endian = BIG_ENDIAN;

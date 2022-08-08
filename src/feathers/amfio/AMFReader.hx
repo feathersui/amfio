@@ -28,6 +28,14 @@ import openfl.utils.IExternalizable;
 import openfl.utils.IDataInput;
 #end
 
+/**
+	Read raw AMF data from a `ByteArray`.
+
+	```haxe
+	var reader = new AMFReader(byteArray);
+	var data = reader.readObject();
+	```
+**/
 class AMFReader #if !flash implements IDataInput #end {
 	private static final AMF0_AMF3:UInt = 0x11;
 	private static final AMF0_NUMBER:UInt = 0x0;
