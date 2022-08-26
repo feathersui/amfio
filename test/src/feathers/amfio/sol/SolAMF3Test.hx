@@ -8,12 +8,10 @@
 
 package feathers.amfio.sol;
 
-import openfl.Lib;
 import feathers.amfio.sol.testdata.AMF3ArrayDemo;
 import feathers.amfio.sol.testdata.AMF3BooleanDemo;
 import feathers.amfio.sol.testdata.AMF3ByteArrayDemo;
 import feathers.amfio.sol.testdata.AMF3DateDemo;
-import feathers.amfio.sol.testdata.AMF3DictionaryDemo;
 import feathers.amfio.sol.testdata.AMF3IntegerDemo;
 import feathers.amfio.sol.testdata.AMF3NullDemo;
 import feathers.amfio.sol.testdata.AMF3NumberDemo;
@@ -24,7 +22,11 @@ import openfl.utils.ByteArray;
 import openfl.utils.Endian;
 import utest.Assert;
 import utest.Test;
+#if (openfl >= "9.2.0")
 import com.AS3SolTestClass;
+import feathers.amfio.sol.testdata.AMF3DictionaryDemo;
+import openfl.Lib;
+#end
 
 class SolAMF3Test extends Test {
 	public function new() {
@@ -33,10 +35,23 @@ class SolAMF3Test extends Test {
 
 	private var reader:SolReader;
 	private var writer:SolWriter;
+	#if (haxe_ver < 4.2)
+	private var defaultEndianToRestore:Endian;
+	#end
 
 	public function setupClass():Void {
+		#if (haxe_ver < 4.2)
+		defaultEndianToRestore = ByteArray.defaultEndian;
+		ByteArray.defaultEndian = BIG_ENDIAN;
+		#end
 		#if (openfl >= "9.2.0")
 		Lib.registerClassAlias("com.AS3SolTestClass", AS3SolTestClass);
+		#end
+	}
+
+	public function teardownClass():Void {
+		#if (haxe_ver < 4.2)
+		ByteArray.defaultEndian = defaultEndianToRestore;
 		#end
 	}
 
@@ -49,7 +64,7 @@ class SolAMF3Test extends Test {
 		function verify(result:Dynamic):Void {
 			var expected = [1, 2, 3];
 			Assert.isTrue(Reflect.hasField(result, "myIntArray"));
-			var actual = result.myIntArray;
+			var actual:Array<Dynamic> = result.myIntArray;
 			Assert.notNull(actual);
 			Assert.equals(expected.length, actual.length);
 			Assert.equals(expected[0], actual[0]);

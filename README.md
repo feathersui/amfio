@@ -6,9 +6,8 @@ Supports reading and writing raw AMF data, and Local Shared Object _.sol_ files,
 
 ## Minimum Requirements
 
-- Haxe 4.2
+- Haxe 4.1
 - OpenFL 9.2.0
-- Feathers UI 1.0
 
 ## Installation
 

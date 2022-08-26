@@ -238,7 +238,7 @@ class AMFEcmaArrayData<T> {
 		return this.indices.iterator();
 	}
 
-	#if (haxe_ver > 4.1)
+	#if (haxe_ver >= 4.1)
 	/**
 		Creates a key-value iterator for the `AMFEcmaArray`.
 	**/

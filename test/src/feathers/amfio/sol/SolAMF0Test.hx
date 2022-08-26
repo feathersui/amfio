@@ -20,6 +20,7 @@ import feathers.amfio.sol.testdata.AMF0ObjectDemo;
 import feathers.amfio.sol.testdata.AMF0StringDemo;
 import feathers.amfio.sol.testdata.AMF0UndefinedDemo;
 import feathers.amfio.sol.testdata.LongString;
+import openfl.utils.ByteArray;
 import openfl.utils.Endian;
 import utest.Assert;
 import utest.Test;
@@ -31,6 +32,22 @@ class SolAMF0Test extends Test {
 
 	private var reader:SolReader;
 	private var writer:SolWriter;
+	#if (haxe_ver < 4.2)
+	private var defaultEndianToRestore:Endian;
+	#end
+
+	public function setupClass():Void {
+		#if (haxe_ver < 4.2)
+		defaultEndianToRestore = ByteArray.defaultEndian;
+		ByteArray.defaultEndian = BIG_ENDIAN;
+		#end
+	}
+
+	public function teardownClass():Void {
+		#if (haxe_ver < 4.2)
+		ByteArray.defaultEndian = defaultEndianToRestore;
+		#end
+	}
 
 	public function setup():Void {
 		reader = new SolReader();

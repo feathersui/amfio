@@ -401,6 +401,7 @@ class AMFEcmaArrayTest extends Test {
 		}
 	}
 
+	#if (haxe_ver >= 4.1)
 	public function testKeyValueIteratorWithNumbersOnly():Void {
 		var array:AMFEcmaArray<Int> = [3, 1, 4, 1, 5];
 		var expectedIndices = [0, 1, 2, 3, 4];
@@ -463,4 +464,5 @@ class AMFEcmaArrayTest extends Test {
 			}
 		}
 	}
+	#end
 }

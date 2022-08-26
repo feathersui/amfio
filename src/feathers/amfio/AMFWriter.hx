@@ -19,6 +19,8 @@
 
 package feathers.amfio;
 
+import feathers.amfio.AMFDictionary;
+import feathers.amfio.AMFEcmaArray;
 import haxe.Constraints.IMap;
 import haxe.ds.WeakMap;
 import openfl.errors.ArgumentError;
@@ -583,7 +585,7 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 			writeAMF0XML(v);
 		}*/
 		else {
-			if ((v is AMFEcmaArray.AMFEcmaArrayData)) {
+			if ((v is AMFEcmaArrayData)) {
 				writeAMF0Array(v);
 			} else if ((v is Array)) {
 				writeAMF0Array(v);
@@ -635,11 +637,11 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 				writeFlashXML(v);
 			}
 			#end
-		else if ((v is AMFEcmaArray.AMFEcmaArrayData)) {
+		else if ((v is AMFEcmaArrayData)) {
 			writeAmf3Array(v);
 		} else if ((v is Array)) {
 			writeAmf3Array(v);
-		} else if ((v is AMFDictionary.AMFDictionaryData)) {
+		} else if ((v is AMFDictionaryData)) {
 			writeAmf3Dictionary(v);
 		} else if ((v is IMap)) {
 			writeAmf3Dictionary(v);
@@ -813,8 +815,8 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 	private function writeAmf3Dictionary(v:Dynamic):Void {
 		writeByte(AMF3_DICTIONARY);
 		if (!this.amf3ObjectByReference(v)) {
-			if ((v is AMFDictionary.AMFDictionaryData)) {
-				var dict = cast(v, AMFDictionary.AMFDictionaryData<Dynamic, Dynamic>);
+			if ((v is AMFDictionaryData)) {
+				var dict = cast(v, AMFDictionaryData<Dynamic, Dynamic>);
 				var keys = @:privateAccess dict.keys;
 				var values = @:privateAccess dict.values;
 				var len = keys.length;
@@ -870,8 +872,8 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 			var len:UInt = 0;
 			var akl:UInt = 0; // associative keys length
 			var keys:Array<Dynamic> = [];
-			if ((v is AMFEcmaArray.AMFEcmaArrayData)) {
-				var array = cast(v, AMFEcmaArray.AMFEcmaArrayData<Dynamic>);
+			if ((v is AMFEcmaArrayData)) {
+				var array = cast(v, AMFEcmaArrayData<Dynamic>);
 				len = array.length;
 				#if (haxe_ver >= 4.1)
 				for (key => value in array.keyValueIterator()) {
@@ -939,8 +941,8 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 				for (i in 0...akl) {
 					var key:String = keys[i];
 					var val:Any = null;
-					if ((v is AMFEcmaArray.AMFEcmaArrayData)) {
-						var array:AMFEcmaArray<Dynamic> = cast(v, AMFEcmaArray.AMFEcmaArrayData<Dynamic>);
+					if ((v is AMFEcmaArrayData)) {
+						var array:AMFEcmaArray<Dynamic> = cast(v, AMFEcmaArrayData<Dynamic>);
 						// Reflect.field() doesn't work here because the fields
 						// are stored in a private variable
 						val = array[key];
@@ -1044,8 +1046,8 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 		if (!this.amf0ObjectByReference(v)) {
 			var len:UInt = 0;
 			var keys:Array<Dynamic> = [];
-			if ((v is AMFEcmaArray.AMFEcmaArrayData)) {
-				var array = cast(v, AMFEcmaArray.AMFEcmaArrayData<Dynamic>);
+			if ((v is AMFEcmaArrayData)) {
+				var array = cast(v, AMFEcmaArrayData<Dynamic>);
 				len = array.length;
 				#if (haxe_ver >= 4.1)
 				for (key => value in array.keyValueIterator()) {
@@ -1094,8 +1096,8 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 				for (i in 0...len) {
 					var key:String = keys[i];
 					var val:Dynamic = null;
-					if ((v is AMFEcmaArray.AMFEcmaArrayData)) {
-						var array:AMFEcmaArray<Dynamic> = cast(v, AMFEcmaArray.AMFEcmaArrayData<Dynamic>);
+					if ((v is AMFEcmaArrayData)) {
+						var array:AMFEcmaArray<Dynamic> = cast(v, AMFEcmaArrayData<Dynamic>);
 						// Reflect.field() doesn't work here because the fields
 						// are stored in a private variable
 						val = array[key];
