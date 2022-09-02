@@ -1,10 +1,10 @@
 {
   "name": "amfio",
-  "url": "https://feathersui.com/",
+  "url": "https://github.com/feathersui/amfio",
   "license": "Apache",
   "tags": ["openfl", "amf", "amf3", "amf0"],
-  "description": "AMF0 and AMF3 utilities for OpenFL and Feathers UI",
-  "version": "1.0.0-alpha.1",
+  "description": "Read and write AMF0, AMF3, and Flash Local Shared Object files in OpenFL",
+  "version": "1.0.0",
   "classPath": "src",
   "dependencies": {
     "openfl": ""

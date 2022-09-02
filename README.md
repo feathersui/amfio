@@ -18,10 +18,10 @@ Contains the following types for AMF input and output.
 
 ## Installation
 
-This library is not yet available on Haxelib, so you'll need to install it from Github.
+Run the following command in a terminal to install [amfio](https://lib.haxe.org/p/amfio) from Haxelib.
 
 ```sh
-haxelib git amfio https://github.com/feathersui/amfio.git
+haxelib install amfio
 ```
 
 ## Project Configuration
