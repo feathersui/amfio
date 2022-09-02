@@ -2,7 +2,14 @@
 
 AMF binary data format readers and writers for for [OpenFL](https://openfl.org/) and [Feathers UI](https://feathersui.com/), written in [Haxe](https://haxe.org/).
 
-Supports reading and writing raw AMF data, and Local Shared Object _.sol_ files, using OpenFL's `ByteArray` class.
+Contains the following types for AMF input and output.
+
+- `AMFReader`: Reads AMF0 or AMF3 objects from a `ByteArray`
+- `AMFWriter`: Writes AMF0 or AMF3 objects to a `ByteArray`
+- `SolReader`: Reads Flash Local Shared Object data from a `ByteArray`
+- `SolWriter`: Writes Flash Local Shared Object data to a `ByteArray`
+- `AMFEcmaArray`: An associative array that may contain both integer and string keys. Like a combination of the `Array` type and an anonymous structure.
+- `AMFDictionary`: Similar to the `Map` type, but keys are not restricted to a single type.
 
 ## Minimum Requirements
 
