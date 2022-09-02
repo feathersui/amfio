@@ -247,14 +247,23 @@ class AMFEcmaArrayData<T> {
 	}
 	#end
 
+	/**
+		@see [`Array map()`](https://api.haxe.org/Array.html#map)
+	**/
 	public inline function map<S>(f:T->S):Array<S> {
 		return this.indices.map(f);
 	}
 
+	/**
+		@see [`Array filter()`](https://api.haxe.org/Array.html#filter)
+	**/
 	public inline function filter(f:T->Bool):Array<T> {
 		return this.indices.filter(f);
 	}
 
+	/**
+		@see [`Array resize()`](https://api.haxe.org/Array.html#resize)
+	**/
 	public inline function resize(len:Int):Void {
 		this.indices.resize(len);
 	}
@@ -269,6 +278,9 @@ class AMFEcmaArrayKeyValueIterator {
 	private var indiciesIterator:KeyValueIterator<Dynamic, Dynamic>;
 	private var fieldsIterator:KeyValueIterator<Dynamic, Dynamic>;
 
+	/**
+		Creates a new `AMFEcmaArrayKeyValueIterator` instance.
+	**/
 	public function new(array:AMFEcmaArrayData<Dynamic>) {
 		this.indiciesIterator = @:privateAccess array.indices.keyValueIterator();
 		this.fieldsIterator = @:privateAccess array.fields.keyValueIterator();

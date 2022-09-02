@@ -139,6 +139,9 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 
 	private var target:ByteArray;
 
+	/**
+		@see [`ObjectEncoding.dynamicPropertyWriter`](https://api.openfl.org/openfl/net/ObjectEncoding.html#dynamicPropertyWriter)
+	**/
 	public var dynamicPropertyWriter:#if (flash || openfl >= "9.2.0") IDynamicPropertyWriter #else Dynamic #end;
 
 	private var objects:Array<Dynamic>;
