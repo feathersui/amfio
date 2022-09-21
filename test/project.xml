@@ -3,6 +3,7 @@
 	
 	<meta title="Services Tests" package="com.feathersui.services.tests" version="1.0.0" company="Bowler Hat LLC" />
 	<app main="TestMain" file="ServicesTests" />
+	<window hidden="true"/>
 
 	<source path="src" />
 	<source path="../src" />
