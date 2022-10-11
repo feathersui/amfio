@@ -422,7 +422,7 @@ class AMFEcmaArrayTest extends Test {
 		var expectedKeys = ["one", "two", "three"];
 		var expectedValues = [1, 2, 3];
 		for (key => value in array) {
-			#if flash
+			#if (flash || cpp)
 			// string keys are not guaranteed to be in any particular order
 			var keyIndex = expectedKeys.indexOf(key);
 			Assert.notEquals(-1, keyIndex);
@@ -446,7 +446,7 @@ class AMFEcmaArrayTest extends Test {
 		var expectedKeys:Array<Dynamic> = [0, 1, 2, 3, 4, "one", "two", "three"];
 		var expectedValues = [3, 1, 4, 1, 5, 1, 2, 3];
 		for (key => value in array) {
-			#if flash
+			#if (flash || cpp)
 			if ((key is String)) {
 				// string keys are not guaranteed to be in any particular order
 				var keyIndex = expectedKeys.indexOf(key);
