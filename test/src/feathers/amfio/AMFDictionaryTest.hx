@@ -22,6 +22,7 @@ class AMFDictionaryTest extends Test {
 	}
 
 	public function testGetAndSet():Void {
+		trace("*** START");
 		var dict = new AMFDictionary<Dynamic, Dynamic>();
 		dict[1] = "number";
 		dict["two"] = "string";
@@ -35,5 +36,6 @@ class AMFDictionaryTest extends Test {
 		Assert.equals("object", dict[obj]);
 		Assert.equals("class", dict[Test]);
 		Assert.isNull(dict["abc123"]);
+		trace("*** END");
 	}
 }

@@ -62,6 +62,18 @@ abstract AMFDictionary<K, V>(AMFDictionaryData<K, V>) from AMFDictionaryData<K, 
 		var keys = @:privateAccess this.keys;
 		var values = @:privateAccess this.values;
 		var index = keys.indexOf(key);
+		#if cpp
+		// seems like a bug in hxcpp where 1 == true
+		if (index != -1 && (key is Bool) || (key is Int)) {
+			do {
+				var oldKey = keys[index];
+				if (Std.string(oldKey) == Std.string(key)) {
+					break;
+				}
+				index = keys.indexOf(key, index + 1);
+			} while (index != -1);
+		}
+		#end
 		if (index == -1) {
 			return null;
 		}
@@ -76,6 +88,15 @@ abstract AMFDictionary<K, V>(AMFDictionaryData<K, V>) from AMFDictionaryData<K, 
 		var keys = @:privateAccess this.keys;
 		var values = @:privateAccess this.values;
 		var index = keys.indexOf(key);
+		#if cpp
+		// seems like a bug in hxcpp where 1 == true
+		if (index != -1 && (key is Bool) || (key is Int)) {
+			var oldKey = keys[index];
+			if (Std.string(oldKey) != Std.string(key)) {
+				index = -1;
+			}
+		}
+		#end
 		if (index == -1) {
 			index = keys.length;
 			keys.push(key);
