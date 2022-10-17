@@ -614,7 +614,7 @@ class AMFReader #if !flash implements IDataInput #end {
 					c = untyped __global__["flash.net.getClassByAlias"](className);
 					#end
 					className = openfl.Lib.getQualifiedClassName(c);
-				} catch (e:Error) {
+				} catch (e:Dynamic) {
 					className = 'Object';
 				}
 			}

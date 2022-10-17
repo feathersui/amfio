@@ -1000,7 +1000,7 @@ class AMFWriter #if !flash implements IDataOutput #end#if (flash || openfl >= "9
 						if (className == null) {
 							className = "";
 						}
-					} catch (e:Error) {
+					} catch (e:Dynamic) {
 						className = "";
 					}
 				}
