@@ -20,7 +20,7 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install dox --quiet
-          haxelib dev amfio $GITHUB_WORKSPACE
+          haxelib dev amfio ${{ github.workspace }}
       - name: Build API reference
         working-directory: docs
         run: haxe docs.hxml

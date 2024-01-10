@@ -19,6 +19,6 @@ jobs:
         run: |
           haxelib install lime --quiet
           haxelib install openfl --quiet
-          haxelib dev amfio $GITHUB_WORKSPACE
+          haxelib dev amfio ${{ github.workspace }}
       - name: Build Flash .swc library
         run: haxelib run openfl build flash -debug
