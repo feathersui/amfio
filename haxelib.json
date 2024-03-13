@@ -4,11 +4,11 @@
   "license": "Apache",
   "tags": ["openfl", "amf", "amf3", "amf0"],
   "description": "Read and write AMF0, AMF3, and Flash Local Shared Object files in OpenFL",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "classPath": "src",
   "dependencies": {
     "openfl": ""
   },
   "contributors": ["bowlerhat"],
-  "releasenote": "AMFDictionary hxcpp fix"
+  "releasenote": "Catch more exceptions"
 }
