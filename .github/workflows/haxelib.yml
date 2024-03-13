@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/upload-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.3.4
+      - name: Package Haxelib
+        working-directory: haxelib
+        run: haxe haxelib.hxml
+      - uses: actions/upload-artifact@v4
         with:
           name: amfio-haxelib
-          path: |
-            src/
-            haxelib.json
-            README.md
-            LICENSE
-            NOTICE
-            CHANGELOG.md
+          path: bin/haxelib/
           if-no-files-found: error
