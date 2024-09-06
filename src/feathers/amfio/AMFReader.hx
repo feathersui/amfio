@@ -410,11 +410,16 @@ class AMFReader #if !flash implements IDataInput #end {
 			var localTraits:AMFTraits = null;
 			if (decodedTraits.alias != null && decodedTraits.alias.length > 0) {
 				var c:Class<Dynamic> = null;
-				#if (openfl >= "9.2.0")
-				c = openfl.Lib.getClassByAlias(decodedTraits.alias);
-				#elseif flash
-				c = untyped __global__["flash.net.getClassByAlias"](decodedTraits.alias);
-				#end
+				try {
+					#if (openfl >= "9.2.0")
+					c = openfl.Lib.getClassByAlias(decodedTraits.alias);
+					#elseif flash
+					c = untyped __global__["flash.net.getClassByAlias"](decodedTraits.alias);
+					#end
+				} catch (e:Dynamic) {
+					// if the alias isn't registered, we'll fall back to an
+					// anonymous structure instead
+				}
 				if (c != null) {
 					obj = Type.createInstance(c, []);
 					localTraits = getLocalTraitsInfo(obj);
@@ -684,7 +689,7 @@ class AMFReader #if !flash implements IDataInput #end {
 				value = null;
 				#end
 			case AMF3_NULL:
-			// null is already assigned by default
+				// null is already assigned by default
 			case AMF3_DATE:
 				value = readAmf3Date();
 			case AMF3_BYTEARRAY:
@@ -759,11 +764,16 @@ class AMFReader #if !flash implements IDataInput #end {
 		var localTraits:AMFTraits = null;
 		if (alias != null && alias.length > 0) {
 			var c:Class<Dynamic> = null;
-			#if (openfl >= "9.2.0")
-			c = openfl.Lib.getClassByAlias(alias);
-			#elseif flash
-			c = untyped __global__["flash.net.getClassByAlias"](alias);
-			#end
+			try {
+				#if (openfl >= "9.2.0")
+				c = openfl.Lib.getClassByAlias(alias);
+				#elseif flash
+				c = untyped __global__["flash.net.getClassByAlias"](alias);
+				#end
+			} catch (e:Dynamic) {
+				// if the alias isn't registered, we'll fall back to an
+				// anonymous structure instead
+			}
 			if (c != null) {
 				obj = Type.createInstance(c, []);
 				localTraits = getLocalTraitsInfo(obj);
