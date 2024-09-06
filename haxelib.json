@@ -4,7 +4,7 @@
   "license": "Apache",
   "tags": ["openfl", "amf", "amf3", "amf0"],
   "description": "Read and write AMF0, AMF3, and Flash Local Shared Object files in OpenFL",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "classPath": "src",
   "dependencies": {
     "openfl": ""
