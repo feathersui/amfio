@@ -61,5 +61,6 @@ openfl test html5
 Alternatively, you can run HTML/JS tests with Playwright, in all three of: Chromium, Firefox, and Webkit.
 
 ```sh
-npm test
+haxelib run openfl build html5 -final -Dplaywright
+node playwright-runner.js
 ```
