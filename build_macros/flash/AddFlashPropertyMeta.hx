@@ -1,6 +1,6 @@
 /*
 	Feathers UI
-	Copyright 2022 Bowler Hat LLC. All Rights Reserved.
+	Copyright 2026 Bowler Hat LLC. All Rights Reserved.
 
 	This program is free software. You can redistribute and/or modify it in
 	accordance with the terms of the accompanying license agreement.
@@ -22,6 +22,7 @@ class AddFlashPropertyMeta {
 						var classPack = classType.pack.join(".");
 						if (packStart == null || (classPack != null && StringTools.startsWith(classType.pack.join("."), packStart))) {
 							checkFields(classType, classType.fields.get());
+							checkFields(classType, classType.statics.get());
 						}
 					default: // skip
 				};
@@ -32,7 +33,7 @@ class AddFlashPropertyMeta {
 	private static function checkField(classType:ClassType, field:ClassField):Void {
 		switch (field.kind) {
 			case FVar(read, write):
-				if ((read.equals(AccCall) || write.match(AccCall)) && !field.meta.has(":flash.property")) {
+				if ((read.equals(AccCall) || write.equals(AccCall)) && !field.meta.has(":flash.property")) {
 					field.meta.add(":flash.property", [], field.pos);
 				}
 			default:
